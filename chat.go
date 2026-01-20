@@ -94,6 +94,12 @@ type ChatMessagePart struct {
 	ImageURL *ChatMessageImageURL `json:"image_url,omitempty"`
 }
 
+type ThinkingBlock struct {
+	Type      string `json:"type"`
+	Thinking  string `json:"thinking"`
+	Signature string `json:"signature"`
+}
+
 type ChatCompletionMessage struct {
 	Role         string `json:"role"`
 	Content      string `json:"content,omitempty"`
@@ -119,6 +125,9 @@ type ChatCompletionMessage struct {
 
 	// For Role=tool prompts this should be set to the ID given in the assistant's prior request to call a tool.
 	ToolCallID string `json:"tool_call_id,omitempty"`
+
+	// ThinkingBlocks for Gemini
+	ThinkingBlocks []ThinkingBlock `json:"thinking_blocks,omitempty"`
 }
 
 func (m ChatCompletionMessage) MarshalJSON() ([]byte, error) {
